@@ -198,7 +198,7 @@ class HeaderBar extends HTMLElement {
         </li>
         <li class="nav__item">
           <a href="https://github.com/anis000romzi" target="_blank" rel="noopener" rel="noreferrer"
-            >About Us</a
+            >About Us <i class="fa-solid fa-arrow-up-right-from-square"></i></a
           >
         </li>
       </ul>
