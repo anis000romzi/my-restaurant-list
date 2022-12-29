@@ -82,8 +82,6 @@ class LikeButton extends HTMLElement {
       await LikedRestaurantIdb.putRestaurant(this._restaurant);
       this._renderButton();
     });
-
-    this.dispatchEvent(new Event('like-button:rendered'));
   }
 
   _renderLiked() {
@@ -120,8 +118,6 @@ class LikeButton extends HTMLElement {
       await LikedRestaurantIdb.deleteRestaurant(this._restaurant.id);
       this._renderButton();
     });
-
-    this.dispatchEvent(new Event('like-button:rendered'));
   }
 }
 
