@@ -1,13 +1,14 @@
+import UrlParser from '../../routes/url-parser';
 import RestaurantApiSource from '../../data/restaurantapi-source';
 
-const RestaurantListPage = {
+const SearchRestaurantPage = {
   async render() {
     return `
-      <hero-element></hero-element>
-      <main tabindex="0" id="pageContent">
+      <main tabindex="0" id="pageContent" class="search-page">
+        <search-bar></search-bar>
         <section
           id="restaurant-list"
-          class="restaurant-list"
+          class="restaurant-list search-list"
           tabindex="0"
         ><div id="loaderContainer">
           <div class="lds-ring"><div></div><div></div><div></div><div>
@@ -17,12 +18,17 @@ const RestaurantListPage = {
   },
 
   async afterRender() {
-    const restaurants = await RestaurantApiSource.restaurants();
+    const genres = ['Italia', 'Modern', 'Sop', 'Jawa', 'Bali', 'Spanyol', 'Sunda'];
+    const randomGenreSelector = Math.floor(Math.random() * 7);
+    const url = UrlParser.parseActiveUrlWithoutCombiner();
+    // eslint-disable-next-line max-len
+    const restaurants = await RestaurantApiSource.searchRestaurant(url.id || genres[randomGenreSelector]);
+    const restaurantsResult = restaurants.restaurants;
     const loaderElement = document.querySelector('#loaderContainer');
     const restaurantContainer = document.querySelector('#restaurant-list');
     loaderElement.remove();
 
-    restaurants.forEach((restaurant) => {
+    restaurantsResult.forEach((restaurant) => {
       const restaurantItem = document.createElement('restaurant-item');
       restaurantItem.setAttribute('id', `${restaurant.id}`);
       restaurantItem.setAttribute('tabindex', '0');
@@ -32,4 +38,4 @@ const RestaurantListPage = {
   },
 };
 
-export default RestaurantListPage;
+export default SearchRestaurantPage;

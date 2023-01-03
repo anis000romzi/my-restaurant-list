@@ -6,6 +6,7 @@ import './views/components/hero-element';
 import './views/components/restaurant-item';
 import './views/components/review-form';
 import './views/components/like-button';
+import './views/components/search-bar';
 import App from './app';
 import swRegister from './helpers/sw-register';
 

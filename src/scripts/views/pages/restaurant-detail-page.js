@@ -6,7 +6,6 @@ import { errorReviewTemplate, errorTemplate } from '../templates/error-template'
 const RestaurantDetailPage = {
   async render() {
     return `
-      <header-bar></header-bar>
       <main tabindex="0" id="pageContent">
         <section id="restaurant-detail"
           class="restaurant-detail"

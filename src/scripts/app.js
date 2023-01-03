@@ -16,7 +16,7 @@ class App {
     } catch (error) {
       let errorMessage;
       if (error instanceof TypeError) {
-        errorMessage = 'Page not found';
+        errorMessage = 'There\'s a problem when loading the page.';
       } else {
         errorMessage = error;
       }

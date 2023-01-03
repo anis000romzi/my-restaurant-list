@@ -1,3 +1,5 @@
+import LikedRestaurantIdb from '../../data/liked-restaurant-idb';
+
 class HeaderBar extends HTMLElement {
   constructor() {
     super();
@@ -21,9 +23,9 @@ class HeaderBar extends HTMLElement {
     }, 200);
   }
 
-  connectedCallback() {
+  async connectedCallback() {
     this._fontAwesomeLoader();
-    this.render();
+    await this.render();
     this._openNavbarOnClick();
     this._closeNavbarOnClick();
   }
@@ -50,7 +52,7 @@ class HeaderBar extends HTMLElement {
       });
   }
 
-  render() {
+  async render() {
     this._shadowRoot.innerHTML = `
     <style>
     * {
@@ -123,8 +125,17 @@ class HeaderBar extends HTMLElement {
         width: 100%;
         line-height: 24px;
         font-size: 15px;
-        padding: 20px;
+        padding: 10px 20px;
         text-transform: uppercase;
+      }
+
+      .nav__item > a > span {
+        font-family: sans-serif;
+        background-color: rgb(255, 113, 113);
+        color: #fff;
+        font-size: 12px;
+        padding: 2px 5px;
+        border-radius: 5px;
       }
       
       .nav a {
@@ -159,22 +170,33 @@ class HeaderBar extends HTMLElement {
           align-items: center;
           display: flex;
           position: sticky;
-          top: 0;
           justify-content: space-between;
         }
       
         .nav__title {
           display: inline-block;
+          font-size: 2.2em
         }
       
         .nav__list {
-          width: 45%;
+          width: 68%;
         }
       
         .nav__item {
           display: inline-block;
           text-align: center;
-          width: 30%;
+          width: 24%;
+          padding: 20px 20px;
+        }
+      }
+
+      @media screen and (min-width: 1200px) {
+        .nav__title {
+          font-size: 2.3em
+        }
+      
+        .nav__list {
+          width: 55%;
         }
       }
     </style>
@@ -191,14 +213,17 @@ class HeaderBar extends HTMLElement {
       </h1>
       <ul class="nav__list">
         <li class="nav__item">
-          <a href="#/restaurants">Home</a>
+        <a href="#/restaurants">Home <i class="fa-solid fa-house"></i></a>
         </li>
         <li class="nav__item">
-          <a href="#/liked-restaurants">Favorite</a>
+        </i><a href="#/search">Search <i class="fa-solid fa-magnifying-glass"></i></a>
+        </li>
+        <li class="nav__item">
+          <a href="#/liked-restaurants">Favorite <span id="numLiked">${await LikedRestaurantIdb.getNumbersOfLikedRestaurants()}</span></a>
         </li>
         <li class="nav__item">
           <a href="https://github.com/anis000romzi" target="_blank" rel="noopener" rel="noreferrer"
-            >About Us <i class="fa-solid fa-arrow-up-right-from-square"></i></a
+            >About <i class="fa-solid fa-arrow-up-right-from-square"></i></a
           >
         </li>
       </ul>

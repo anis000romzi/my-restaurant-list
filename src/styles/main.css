@@ -130,6 +130,17 @@ main {
   align-items: center;
 }
 
+.search-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+search-bar {
+  padding: 15px 10px;
+}
+
 .restaurant-detail {
   display: flex;
   flex-direction: column;
@@ -342,6 +353,18 @@ footer-bar {
 
   .restaurant-detail__review__item {
     width: 20%;
+  }
+}
+
+@media screen and (min-width: 930px) {
+  header-bar {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+  }
+
+  .search-list {
+    margin-top: 5%;
   }
 }
 

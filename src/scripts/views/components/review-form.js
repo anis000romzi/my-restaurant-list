@@ -80,7 +80,6 @@ class ReviewForm extends HTMLElement {
       
     .restaurant-detail__review__form-button:hover {
         border: #fff 1px solid;
-        padding: 1em 1.1em;
         color: #fff;
         background-color: rgb(255, 113, 113);
     }

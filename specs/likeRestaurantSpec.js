@@ -5,7 +5,12 @@ import * as TestFactories from './helpers/testFactories';
 
 describe('Liking A Restaurant', () => {
   const likeButton = document.createElement('like-button');
+  const headerBar = document.createElement('header-bar');
   const dataSample = { id: 1 };
+
+  beforeEach(async () => {
+    await TestFactories.createHeaderBar(headerBar);
+  });
 
   it('should show the like button when the restaurant has not been liked before', async () => {
     await TestFactories.createLikeButton(likeButton, dataSample);
