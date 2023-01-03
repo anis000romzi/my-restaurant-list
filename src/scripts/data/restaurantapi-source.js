@@ -26,6 +26,12 @@ class RestaurantApiSource {
     }
   }
 
+  static async searchRestaurant(query) {
+    const response = await fetch(API_ENDPOINT.SEARCH(query));
+    const responseJson = await response.json();
+    return responseJson;
+  }
+
   static async detailRestaurant(id) {
     try {
       const response = await fetch(API_ENDPOINT.DETAIL(id), { cache: 'no-cache' });
