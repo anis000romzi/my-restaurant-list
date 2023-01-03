@@ -4,7 +4,6 @@ import { errorTemplate } from '../templates/error-template';
 const LikedRestaurantPage = {
   async render() {
     return `
-      <header-bar></header-bar>
       <main tabindex="0" id="pageContent">
         <h2 id="pageTitle">Liked Restaurant</h2>
         <section

@@ -3,7 +3,6 @@ import RestaurantApiSource from '../../data/restaurantapi-source';
 const RestaurantListPage = {
   async render() {
     return `
-      <header-bar></header-bar>
       <hero-element></hero-element>
       <main tabindex="0" id="pageContent">
         <section

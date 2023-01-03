@@ -49,6 +49,12 @@ main {
   padding: 20px;
 }
 
+header-bar {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
 #pageContainer {
   min-height: 100vh;
 }
@@ -128,6 +134,17 @@ main {
   justify-content: center;
   padding-bottom: 50px;
   align-items: center;
+}
+
+.search-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+search-bar {
+  padding: 15px 10px;
 }
 
 .restaurant-detail {
@@ -342,6 +359,12 @@ footer-bar {
 
   .restaurant-detail__review__item {
     width: 20%;
+  }
+}
+
+@media screen and (min-width: 930px) {
+  .search-list {
+    margin-top: 5%;
   }
 }
 
