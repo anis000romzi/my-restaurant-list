@@ -78,9 +78,11 @@ class LikeButton extends HTMLElement {
     `;
 
     const likeButton = this._shadowRoot.querySelector('#likeButton');
+    const headerBar = document.querySelector('header-bar');
     likeButton.addEventListener('click', async () => {
       await LikedRestaurantIdb.putRestaurant(this._restaurant);
       this._renderButton();
+      headerBar.shadowRoot.querySelector('#numLiked').innerHTML = await LikedRestaurantIdb.getNumbersOfLikedRestaurants();
     });
   }
 
@@ -114,9 +116,11 @@ class LikeButton extends HTMLElement {
     `;
 
     const likeButton = this._shadowRoot.querySelector('#likeButton');
+    const headerBar = document.querySelector('header-bar');
     likeButton.addEventListener('click', async () => {
       await LikedRestaurantIdb.deleteRestaurant(this._restaurant.id);
       this._renderButton();
+      headerBar.shadowRoot.querySelector('#numLiked').innerHTML = await LikedRestaurantIdb.getNumbersOfLikedRestaurants();
     });
   }
 }

@@ -21,6 +21,9 @@ const LikedRestaurantIdb = {
   async getAllRestaurants() {
     return (await dbPromise).getAll(OBJECT_STORE_NAME);
   },
+  async getNumbersOfLikedRestaurants() {
+    return (await (await dbPromise).getAll(OBJECT_STORE_NAME)).length;
+  },
   async putRestaurant(restaurant) {
     // eslint-disable-next-line no-prototype-builtins
     if (!restaurant.hasOwnProperty('id')) {
