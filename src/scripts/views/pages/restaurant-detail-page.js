@@ -40,7 +40,7 @@ const RestaurantDetailPage = {
       document.querySelector('#pageContainer').appendChild(likeButton);
 
       restaurantResult.categories.forEach((category) => {
-        restaurantLabelContainer.innerHTML += `<span>#${category.name}</span>`;
+        restaurantLabelContainer.innerHTML += `<a href="#/search/${category.name}">#${category.name}</a>`;
       });
 
       restaurantResult.menus.foods.forEach((food) => {
