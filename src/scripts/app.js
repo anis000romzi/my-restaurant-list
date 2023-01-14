@@ -21,7 +21,6 @@ class App {
         errorMessage = error;
       }
       this._content.innerHTML = `
-        <header-bar></header-bar>
         <main tabindex="0" id="pageContent">
           <section
             id="restaurant-list"
