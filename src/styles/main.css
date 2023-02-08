@@ -121,13 +121,12 @@ main {
   }
 }
 
-
 .restaurant-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   padding-bottom: 50px;
-  align-items: center;
+  height: fit-content;
 }
 
 .search-page {

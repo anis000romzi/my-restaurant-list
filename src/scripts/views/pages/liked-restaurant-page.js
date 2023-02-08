@@ -5,7 +5,7 @@ const LikedRestaurantPage = {
   async render() {
     return `
       <main tabindex="0" id="pageContent">
-        <h2 id="pageTitle">Liked Restaurant</h2>
+        <h2 id="pageTitle">Favorite Restaurant</h2>
         <section
           id="restaurant-list"
           class="restaurant-list"

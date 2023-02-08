@@ -10,28 +10,27 @@ class ReviewForm extends HTMLElement {
 
   connectedCallback() {
     this.render();
-    this._postReviewOnClick();
+    this._postReviewOnSubmit();
   }
 
-  _postReviewOnClick() {
+  _postReviewOnSubmit() {
     this._shadowRoot
-      .querySelector('#buttonInput')
-      .addEventListener('click', async () => {
+      .querySelector('#reviewForm')
+      .addEventListener('submit', async (event) => {
+        event.preventDefault();
         await this._postReview();
       });
   }
 
   async _postReview() {
-    const url = UrlParser.parseActiveUrlWithoutCombiner();
-    const idRestaurant = url.id;
-    const nameInput = this._shadowRoot.querySelector('#nameInput').value;
-    const reviewInput = this._shadowRoot.querySelector('#reviewInput').value;
+    const { id } = UrlParser.parseActiveUrlWithoutCombiner();
+    const name = this._shadowRoot.querySelector('#nameInput').value;
+    const review = this._shadowRoot.querySelector('#reviewInput').value;
     const reviewData = await RestaurantApiSource.reviewRestaurant({
-      id: idRestaurant,
-      name: nameInput,
-      review: reviewInput,
+      id,
+      name,
+      review,
     });
-    await RestaurantApiSource.detailRestaurant(idRestaurant); // refresh data from API
     RestaurantDetailPage.addReview(reviewData);
   }
 
@@ -85,40 +84,44 @@ class ReviewForm extends HTMLElement {
     }
 
     @media screen and (min-width: 500px) {
-      :host {
+      .restaurant-detail__review__form {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
       }
-
+      
       .restaurant-detail__review__form-group {
-        width: 80%;
+        width: 70%;
       }
-
+      
       .restaurant-detail__review__form-group > label {
         font-size: 1.2em;
         padding: 0.8em
       }
     }
-
+    
     @media screen and (min-width: 720px) {
+
       .restaurant-detail__review__form-group {
         width: 50%;
       }
     }
     </style>
 
-    <div class="restaurant-detail__review__form-group name-input">
-        <label for="nameInput">Name</label>
-        <input id="nameInput" type="text" class="restaurant-detail__review__form-control" placeholder="Insert your name">
-    </div>
-    <div class="restaurant-detail__review__form-group review-input">
-        <label for="reviewInput">Review</label>
-        <input id="reviewInput" type="text" class="restaurant-detail__review__form-control" placeholder="Type your review here!">
-    </div>
-    <div class="restaurant-detail__review__form-group button-input">
-        <button id="buttonInput" class="restaurant-detail__review__form-button">Post Review</button>
-    </div>
+    <form class="restaurant-detail__review__form" id="reviewForm">
+      <div class="restaurant-detail__review__form-group name-input">
+          <label for="nameInput">Name</label>
+          <input id="nameInput" type="text" class="restaurant-detail__review__form-control" placeholder="Insert your name">
+      </div>
+      <div class="restaurant-detail__review__form-group review-input">
+          <label for="reviewInput">Review</label>
+          <input id="reviewInput" type="text" class="restaurant-detail__review__form-control" placeholder="Type your review here!">
+      </div>
+      <div class="restaurant-detail__review__form-group button-input">
+          <button type="submit" id="buttonInput" class="restaurant-detail__review__form-button">Post Review</button>
+      </div>
+    </form>
     `;
   }
 }

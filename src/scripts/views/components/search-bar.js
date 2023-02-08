@@ -18,15 +18,15 @@ class SearchBar extends HTMLElement {
         this._shadowRoot.appendChild(fontAwesomeMain.cloneNode('deep'));
         clearInterval(id);
       }
-    }, 200);
+    }, 0);
   }
 
   _searchRestaurant() {
-    const searchButton = this._shadowRoot.querySelector('#searchButton');
-    searchButton.addEventListener('click', () => {
+    const searchForm = this._shadowRoot.querySelector('#searchForm');
+    searchForm.addEventListener('submit', (event) => {
+      event.preventDefault();
       const searchInput = this._shadowRoot.querySelector('#searchInput').value;
       window.location.href = `#/search/${searchInput}`;
-      console.log(searchInput);
     });
   }
 
@@ -54,6 +54,11 @@ class SearchBar extends HTMLElement {
           width: 100%;
           top: 0;
           z-index: 2;
+      }
+
+      #searchForm {
+        display: flex;
+        width: 100%
       }
       
       .search__form-control {
@@ -85,10 +90,18 @@ class SearchBar extends HTMLElement {
           :host {
             width: 80%;
           }
+
+          #searchForm {
+            width: 80%;
+          }
       }
 
       @media screen and (min-width: 850px) {
           :host {
+            width: 70%;
+          }
+
+          #searchForm {
             width: 70%;
           }
       }
@@ -111,10 +124,12 @@ class SearchBar extends HTMLElement {
       }
     </style>
 
-    <input id="searchInput" type="text" class="search__form-control" placeholder="Search by name or categories">
-    <button id="searchButton" class="search__form-button">
-      <i class="fa-solid fa-magnifying-glass"></i>
-    </button>
+    <form id="searchForm">
+      <input id="searchInput" type="text" class="search__form-control" placeholder="Search by name or categories">
+      <button type="submit" id="searchButton" class="search__form-button">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </form
     `;
   }
 }

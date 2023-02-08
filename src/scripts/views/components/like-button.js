@@ -10,7 +10,7 @@ class LikeButton extends HTMLElement {
     this._restaurant = data;
   }
 
-  async _fontAwesomeLoader() {
+  _fontAwesomeLoader() {
     const fontAwesomeScript = document.querySelector(
       'script[src*="fontawesome"]',
     );
@@ -32,7 +32,7 @@ class LikeButton extends HTMLElement {
   }
 
   async _renderButton() {
-    await this._fontAwesomeLoader();
+    this._fontAwesomeLoader();
     const { id } = this._restaurant;
 
     if (await this._isRestaurantExist(id)) {

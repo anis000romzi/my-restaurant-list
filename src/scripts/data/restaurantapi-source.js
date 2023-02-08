@@ -19,10 +19,10 @@ class RestaurantApiSource {
       const responseJson = await response.json();
       return responseJson;
     } catch (error) {
-      if (error instanceof TypeError) {
-        return 'Make sure you\'re connected to the internet!';
+      if (error.message === 'Failed to fetch') {
+        return { error: true, message: 'Make sure you\'re connected to the internet!' };
       }
-      return error;
+      return { error: true, message: error.message };
     }
   }
 
@@ -38,10 +38,10 @@ class RestaurantApiSource {
       const responseJson = await response.json();
       return responseJson;
     } catch (error) {
-      if (error instanceof TypeError) {
-        return 'Make sure you\'re connected to the internet!';
+      if (error.message === 'Failed to fetch') {
+        return { error: true, message: 'Make sure you\'re connected to the internet!' };
       }
-      return error;
+      return { error: true, message: error.message };
     }
   }
 }

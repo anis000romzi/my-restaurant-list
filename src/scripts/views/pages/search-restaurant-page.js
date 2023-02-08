@@ -19,16 +19,15 @@ const SearchRestaurantPage = {
 
   async afterRender() {
     const genres = ['Italia', 'Modern', 'Sop', 'Jawa', 'Bali', 'Spanyol', 'Sunda'];
-    const randomGenreSelector = Math.floor(Math.random() * 7);
-    const url = UrlParser.parseActiveUrlWithoutCombiner();
-    // eslint-disable-next-line max-len
-    const restaurants = await RestaurantApiSource.searchRestaurant(url.id || genres[randomGenreSelector]);
-    const restaurantsResult = restaurants.restaurants;
+    const randomGenre = genres[Math.floor(Math.random() * genres.length)];
+    const { id } = UrlParser.parseActiveUrlWithoutCombiner();
+
+    const { restaurants } = await RestaurantApiSource.searchRestaurant(id || randomGenre);
     const loaderElement = document.querySelector('#loaderContainer');
     const restaurantContainer = document.querySelector('#restaurant-list');
     loaderElement.remove();
 
-    restaurantsResult.forEach((restaurant) => {
+    restaurants.forEach((restaurant) => {
       const restaurantItem = document.createElement('restaurant-item');
       restaurantItem.setAttribute('id', `${restaurant.id}`);
       restaurantItem.setAttribute('tabindex', '0');
