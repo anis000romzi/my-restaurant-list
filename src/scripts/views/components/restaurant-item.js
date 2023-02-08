@@ -24,7 +24,7 @@ class RestaurantItem extends HTMLElement {
         this._shadowRoot.appendChild(fontAwesomeMain.cloneNode('deep'));
         clearInterval(id);
       }
-    }, 200);
+    }, 0);
   }
 
   connectedCallback() {
@@ -128,7 +128,7 @@ class RestaurantItem extends HTMLElement {
         }
     }
 
-    @media screen and (min-width: 712px) {
+    @media screen and (min-width: 600px) {
         :host {
           width: 40%;
         }

@@ -30,7 +30,7 @@ class FooterBar extends HTMLElement {
       }
     </style>
 
-    Copyright© 2022 - My Restaurant List`;
+    Copyright© ${new Date().getFullYear()} - My Restaurant List`;
   }
 }
 

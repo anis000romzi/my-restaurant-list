@@ -15,8 +15,8 @@ class App {
       await page.afterRender();
     } catch (error) {
       let errorMessage;
-      if (error instanceof TypeError) {
-        errorMessage = 'There\'s a problem when loading the page.';
+      if (error.message === 'Cannot read properties of undefined (reading \'render\')') {
+        errorMessage = 'Page not found';
       } else {
         errorMessage = error;
       }

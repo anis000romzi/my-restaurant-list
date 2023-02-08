@@ -18,59 +18,54 @@ const RestaurantDetailPage = {
   },
 
   async afterRender() {
-    const url = UrlParser.parseActiveUrlWithoutCombiner();
-    const restaurant = await RestaurantApiSource.detailRestaurant(url.id);
-    const restaurantResult = restaurant.restaurant;
+    const { id } = UrlParser.parseActiveUrlWithoutCombiner();
+    const { error, message, restaurant } = await RestaurantApiSource.detailRestaurant(id);
     const restaurantContainer = document.querySelector('#restaurant-detail');
 
-    if (restaurantResult) {
-      restaurantContainer.innerHTML = createRestaurantDetailTemplate(restaurantResult);
+    if (error === false) {
+      const {
+        categories,
+        menus,
+        customerReviews,
+        ...rest
+      } = restaurant;
+      restaurantContainer.innerHTML = createRestaurantDetailTemplate(restaurant);
       const restaurantLabelContainer = document.querySelector('.restaurant-detail__info__label');
       const restaurantMenuFoodsContainer = document.querySelector('#menuListFoods');
       const restaurantMenuDrinksContainer = document.querySelector('#menuListDrinks');
       const likeButton = document.createElement('like-button');
-      likeButton.restaurantData = {
-        id: restaurantResult.id,
-        name: restaurantResult.name,
-        rating: restaurantResult.rating,
-        city: restaurantResult.city,
-        pictureId: restaurantResult.pictureId,
-        description: restaurantResult.description,
-      };
+      likeButton.restaurantData = { ...rest };
       document.querySelector('#pageContainer').appendChild(likeButton);
 
-      restaurantResult.categories.forEach((category) => {
+      categories.forEach((category) => {
         restaurantLabelContainer.innerHTML += `<a href="#/search/${category.name}">#${category.name}</a>`;
       });
 
-      restaurantResult.menus.foods.forEach((food) => {
+      menus.foods.forEach((food) => {
         restaurantMenuFoodsContainer.innerHTML += `<li>${food.name}</li>`;
       });
 
-      restaurantResult.menus.drinks.forEach((drink) => {
+      menus.drinks.forEach((drink) => {
         restaurantMenuDrinksContainer.innerHTML += `<li>${drink.name}</li>`;
       });
 
-      this.addReview(restaurantResult);
-    } else if (restaurant.message) {
-      restaurantContainer.innerHTML = errorTemplate(restaurant.message);
+      this.addReview({ error, customerReviews });
     } else {
-      restaurantContainer.innerHTML = errorTemplate(restaurant);
+      restaurantContainer.innerHTML = errorTemplate(message);
     }
   },
 
-  addReview(restaurantData) {
+  addReview({ error, message, customerReviews }) {
     const restaurantReviewsContainer = document.querySelector('.restaurant-detail__review__container');
     restaurantReviewsContainer.innerHTML = '';
 
-    if (restaurantData.customerReviews) {
-      restaurantData.customerReviews.forEach((review) => {
+    if (error === false) {
+      console.log(customerReviews);
+      customerReviews.forEach((review) => {
         restaurantReviewsContainer.innerHTML += createRestaurantReviewTemplate(review);
       });
-    } else if (restaurantData.message) {
-      restaurantReviewsContainer.innerHTML = errorReviewTemplate(restaurantData.message);
     } else {
-      restaurantReviewsContainer.innerHTML = errorReviewTemplate(restaurantData);
+      restaurantReviewsContainer.innerHTML = errorReviewTemplate(message);
     }
   },
 };

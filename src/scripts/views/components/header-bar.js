@@ -20,7 +20,7 @@ class HeaderBar extends HTMLElement {
         this._shadowRoot.appendChild(fontAwesomeMain.cloneNode('deep'));
         clearInterval(id);
       }
-    }, 200);
+    }, 700);
   }
 
   async connectedCallback() {
@@ -92,7 +92,7 @@ class HeaderBar extends HTMLElement {
       }
       
       .nav {
-        width: 300px;
+        width: 200px;
         margin-left: auto;
         margin-right: auto;
         position: fixed;
