@@ -12,7 +12,7 @@
     "e2e": "codeceptjs run --steps"
   },
   "keywords": [],
-  "author": "your_name <your.email@domain.com>",
+  "author": "anis000romzi@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.18.5",

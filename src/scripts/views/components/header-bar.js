@@ -34,26 +34,20 @@ class HeaderBar extends HTMLElement {
     this._shadowRoot
       .querySelector('#hamburger')
       .addEventListener('click', (event) => {
-        this._shadowRoot
-          .querySelector('#drawer')
-          .classList.toggle('open');
+        this._shadowRoot.querySelector('#drawer').classList.toggle('open');
         event.stopPropagation();
       });
   }
 
   _closeNavbarOnClick() {
-    document
-      .querySelector('body')
-      .addEventListener('click', (event) => {
-        this._shadowRoot
-          .querySelector('#drawer')
-          .classList.remove('open');
-        event.stopPropagation();
-      });
+    document.querySelector('body').addEventListener('click', (event) => {
+      this._shadowRoot.querySelector('#drawer').classList.remove('open');
+      event.stopPropagation();
+    });
   }
 
   async render() {
-    this._shadowRoot.innerHTML = `
+    this._shadowRoot.innerHTML = /* HTML */ `
     <style>
     * {
         padding: 0;
@@ -121,21 +115,11 @@ class HeaderBar extends HTMLElement {
       }
       
       .nav__item {
-        display: inline-block;
         width: 100%;
         line-height: 24px;
         font-size: 15px;
         padding: 10px 20px;
         text-transform: uppercase;
-      }
-
-      .nav__item > a > span {
-        font-family: sans-serif;
-        background-color: rgb(255, 113, 113);
-        color: #fff;
-        font-size: 12px;
-        padding: 2px 5px;
-        border-radius: 5px;
       }
       
       .nav a {
@@ -219,7 +203,7 @@ class HeaderBar extends HTMLElement {
         </i><a href="#/search">Search <i class="fa-solid fa-magnifying-glass"></i></a>
         </li>
         <li class="nav__item">
-          <a href="#/liked-restaurants">Favorite <span id="numLiked">${await LikedRestaurantIdb.getNumbersOfLikedRestaurants()}</span></a>
+          <a href="#/liked-restaurants">Favorite: <strong id="numLiked">${await LikedRestaurantIdb.getNumbersOfLikedRestaurants()}</strong></a>
         </li>
         <li class="nav__item">
           <a href="https://github.com/anis000romzi" target="_blank" rel="noopener" rel="noreferrer"

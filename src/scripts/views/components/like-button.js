@@ -49,32 +49,32 @@ class LikeButton extends HTMLElement {
   }
 
   _renderLike() {
-    this._shadowRoot.innerHTML = `
-    <style>
-    .like {
-        width: 55px;
-        height: 55px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: rgb(255, 113, 113);
-        
-        position: fixed;
-        bottom: 16px;
-        right: 16px;
-        border-radius: 50%;
-        border: 0;
-        
-        font-size: 18px;
-        color: white;
-        cursor: pointer;
-        z-index: 99;
-    }
-    </style>
+    this._shadowRoot.innerHTML = /* HTML */ `
+      <style>
+        .like {
+          width: 55px;
+          height: 55px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: rgb(255, 113, 113);
 
-    <button aria-label="like this restaurant" id="likeButton" class="like">
+          position: fixed;
+          bottom: 16px;
+          right: 16px;
+          border-radius: 50%;
+          border: 0;
+
+          font-size: 18px;
+          color: white;
+          cursor: pointer;
+          z-index: 99;
+        }
+      </style>
+
+      <button aria-label="like this restaurant" id="likeButton" class="like">
         <i class="fa-regular fa-heart" aria-hidden="true"></i>
-    </button>
+      </button>
     `;
 
     const likeButton = this._shadowRoot.querySelector('#likeButton');
@@ -87,32 +87,32 @@ class LikeButton extends HTMLElement {
   }
 
   _renderLiked() {
-    this._shadowRoot.innerHTML = `
-    <style>
-    .like {
-        width: 55px;
-        height: 55px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: rgb(255, 113, 113);
-        
-        position: fixed;
-        bottom: 16px;
-        right: 16px;
-        border-radius: 50%;
-        border: 0;
-        
-        font-size: 18px;
-        color: white;
-        cursor: pointer;
-        z-index: 1;
-    }
-    </style>
+    this._shadowRoot.innerHTML = /* HTML */ `
+      <style>
+        .like {
+          width: 55px;
+          height: 55px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: rgb(255, 113, 113);
 
-    <button aria-label="unlike this restaurant" id="likeButton" class="like">
+          position: fixed;
+          bottom: 16px;
+          right: 16px;
+          border-radius: 50%;
+          border: 0;
+
+          font-size: 18px;
+          color: white;
+          cursor: pointer;
+          z-index: 1;
+        }
+      </style>
+
+      <button aria-label="unlike this restaurant" id="likeButton" class="like">
         <i class="fa-solid fa-heart" aria-hidden="true"></i>
-    </button>
+      </button>
     `;
 
     const likeButton = this._shadowRoot.querySelector('#likeButton');

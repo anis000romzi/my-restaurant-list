@@ -8,6 +8,7 @@ class App {
   }
 
   async renderPage() {
+    window.scrollTo(0, 0);
     const url = UrlParser.parseActiveUrlWithCombiner();
     const page = routes[url];
     try {
