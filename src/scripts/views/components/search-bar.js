@@ -37,7 +37,7 @@ class SearchBar extends HTMLElement {
   }
 
   render() {
-    this._shadowRoot.innerHTML = `
+    this._shadowRoot.innerHTML = /* HTML */ `
     <style>
       * {
         padding: 0;

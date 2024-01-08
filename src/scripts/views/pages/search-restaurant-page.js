@@ -18,13 +18,17 @@ const SearchRestaurantPage = {
   },
 
   async afterRender() {
-    const genres = ['Italia', 'Modern', 'Sop', 'Jawa', 'Bali', 'Spanyol', 'Sunda'];
-    const randomGenre = genres[Math.floor(Math.random() * genres.length)];
+    const genresPool = ['Italia', 'Modern', 'Sop', 'Jawa', 'Bali', 'Spanyol', 'Sunda'];
+    const randomGenre = genresPool[Math.floor(Math.random() * genresPool.length)];
     const { id } = UrlParser.parseActiveUrlWithoutCombiner();
 
+    const searchBar = document.querySelector('search-bar');
     const { restaurants } = await RestaurantApiSource.searchRestaurant(id || randomGenre);
     const loaderElement = document.querySelector('#loaderContainer');
     const restaurantContainer = document.querySelector('#restaurant-list');
+
+    searchBar.shadowRoot.querySelector('#searchInput').value = id ? id.replace(/%20/g, ' ') : '';
+
     loaderElement.remove();
 
     restaurants.forEach((restaurant) => {

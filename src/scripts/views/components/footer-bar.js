@@ -9,28 +9,27 @@ class FooterBar extends HTMLElement {
   }
 
   render() {
-    this._shadowRoot.innerHTML = `
-    <style>
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
+    this._shadowRoot.innerHTML = /* HTML */ ` <style>
+        * {
+          padding: 0;
+          margin: 0;
+          box-sizing: border-box;
+        }
 
-    :host {
-        background-color: rgb(255, 113, 113);
-        width: 100%;
-        text-align: center;
-        font-weight: 800;
-        font-size: 1.15em;
-        color: white;
-        clear: both;
-        position: relative;
-        bottom: 0;
-      }
-    </style>
+        :host {
+          background-color: rgb(255, 113, 113);
+          width: 100%;
+          text-align: center;
+          font-weight: 800;
+          font-size: 1.15em;
+          color: white;
+          clear: both;
+          position: relative;
+          bottom: 0;
+        }
+      </style>
 
-    Copyright© ${new Date().getFullYear()} - My Restaurant List`;
+      Copyright© ${new Date().getFullYear()} - My Restaurant List`;
   }
 }
 
